@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Enumerate GATT services</title>
+</head>
+
+<body>
+    <button>Enumerate GATT services</button>
+</body>
+<script>
+    document.querySelector('button').addEventListener('click', () => {
+
+        // Enumerate GATT services of a BLE device using WebBluetooth API
+        async function enumerateGattServices() {
+
+            try {
+
+                // Spawn BLE peripheral chooser (we will look for DIS)
+                const bleDevice = await navigator.bluetooth.requestDevice({
+                    acceptAllDevices: true,
+                    optionalServices: [ 'device_information' ]
+                });
+
+                // OK, now we've got one, lets do a GATT connect
+                const gattServer = await bleDevice.gatt.connect();
+
+                // Attempt to enumerate its primary services
+                const gattServices = await gattServer.getPrimaryServices();
+
+                // Return found services
+                // We should have only one service here, which is DIS GATT service
+                return gattServices;
+
+            } catch (e) {
+                console.log(e);
+            }
+        };
+            
+        enumerateGattServices()
+            
+            .then(gattServices => console.log('Done enumerating services', gattServices));
+    });
+</script>
+
+</html>
