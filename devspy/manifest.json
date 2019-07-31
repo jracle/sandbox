@@ -1,0 +1,6 @@
+{
+    "short_name": "unifying",
+    "name": "Logitech Unifying Software",
+    "start_url": "index.html",
+    "display": "standalone"
+}
