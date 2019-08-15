@@ -19,9 +19,9 @@
                 // Look for Logitech Unifying receiver
                 const hidppShortUfy = await navigator.hid.requestDevice({ filters: [{
                     vendorId: 0x46d,   // Logitech
-                    productId: 0xc52b, // Unifying Receiver
-                    usagePage: 0xFF00, // HID++ (OLD)
-                    usage: 0x01        // HID++ Short
+                    productId: 0xc52b  // Unifying Receiver
+                    //usagePage: 0xFF00, // HID++ (OLD)
+                    //usage: 0x01        // HID++ Short
                 }]});
 
                 console.log("We've found a HID device");
